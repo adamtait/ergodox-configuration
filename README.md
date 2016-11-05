@@ -4,7 +4,7 @@ My key configurations for my ErgoDox Infinity keyboard.
 
 My current setup is dvorak-based, with a qwerty option (layer 3) incase someone else wants to try to use _my_ keyboard.
 
-The key layout looks like this: 
+The key layout looks like this: ![](layout.png)
 
 ## How to use this keyboard configuration
 
