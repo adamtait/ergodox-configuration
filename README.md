@@ -12,8 +12,8 @@ The Input Club has a good description of [how to apply the key config to your IC
 
 #### TLDR;
 
-flash the right side, then run `dfu-util -D right_kiibohd.bin`
-flash the left side, then run `dfu-util -D left_kiibohd.bin`
++ flash the right side, then run `dfu-util -D right_kiibohd.bin`
++ flash the left side, then run `dfu-util -D left_kiibohd.bin`
 
 NOTE: you'll need a 2nd keyboard to run those commands, while the ErgoDox is in _flash mode_.
 
