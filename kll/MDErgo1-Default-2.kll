@@ -12,6 +12,7 @@ U"7" : U"NUMLOCK";
 U"8" : U"P/";
 U"9" : U"P*";
 U"0" : U"P-";
+U"MINUS" : flashMode();
 U"U" : U"P7";
 U"I" : U"P8";
 U"O" : U"P9";

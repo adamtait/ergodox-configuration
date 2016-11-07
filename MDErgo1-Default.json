@@ -123,6 +123,10 @@
                     "key": "EQUALS",
                     "label": "="
                 },
+                "1": {
+                    "key": "SYS:POWERDOWN",
+                    "label": "POWER"
+                },
                 "2": {
                     "key": "#:flashMode()",
                     "label": "FLASH"
@@ -483,8 +487,8 @@
             "h": 4,
             "layers": {
                 "0": {
-                    "key": "HOME",
-                    "label": "HOME"
+                    "key": "#:'('",
+                    "label": "("
                 }
             }
         },
@@ -496,8 +500,8 @@
             "h": 4,
             "layers": {
                 "0": {
-                    "key": "END",
-                    "label": "END"
+                    "key": "#:'{'",
+                    "label": "{"
                 }
             }
         },
@@ -722,8 +726,12 @@
                     "label": "-"
                 },
                 "1": {
-                    "key": "SYS:POWERDOWN",
-                    "label": "POWER"
+                    "key": "SYS:SLEEP",
+                    "label": "SLEEP"
+                },
+                "2": {
+                    "key": "#:flashMode()",
+                    "label": "FLASH"
                 }
             }
         },
@@ -1145,8 +1153,8 @@
             "h": 4,
             "layers": {
                 "0": {
-                    "key": "PAGEUP",
-                    "label": "PGUP"
+                    "key": "#:')'",
+                    "label": ")"
                 }
             }
         },
@@ -1158,8 +1166,8 @@
             "h": 4,
             "layers": {
                 "0": {
-                    "key": "PAGEDOWN",
-                    "label": "PGDN"
+                    "key": "#:'}'",
+                    "label": "}"
                 }
             }
         },
