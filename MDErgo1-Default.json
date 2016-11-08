@@ -141,8 +141,12 @@
             "h": 6,
             "layers": {
                 "0": {
-                    "key": "PREV LAYER",
-                    "label": "PREV-\u0192"
+                    "key": "#:'('",
+                    "label": "("
+                },
+                "1": {
+                    "key": "#:'{'",
+                    "label": "{"
                 }
             }
         },
@@ -487,8 +491,8 @@
             "h": 4,
             "layers": {
                 "0": {
-                    "key": "#:'('",
-                    "label": "("
+                    "key": "PREV LAYER",
+                    "label": "PREV-\u0192"
                 }
             }
         },
@@ -743,8 +747,12 @@
             "h": 6,
             "layers": {
                 "0": {
-                    "key": "NEXT LAYER",
-                    "label": "NEXT-\u0192"
+                    "key": "#:')'",
+                    "label": ")"
+                },
+                "1": {
+                    "key": "#:'}'",
+                    "label": "}"
                 }
             }
         },
@@ -1000,8 +1008,8 @@
             "h": 4,
             "layers": {
                 "0": {
-                    "key": "RALT",
-                    "label": "RALT"
+                    "key": "RCTRL",
+                    "label": "RCTRL"
                 }
             }
         },
@@ -1013,8 +1021,8 @@
             "h": 4,
             "layers": {
                 "0": {
-                    "key": "RCTRL",
-                    "label": "RCTRL"
+                    "key": "RALT",
+                    "label": "RALT"
                 }
             }
         },
@@ -1153,8 +1161,8 @@
             "h": 4,
             "layers": {
                 "0": {
-                    "key": "#:')'",
-                    "label": ")"
+                    "key": "NEXT LAYER",
+                    "label": "NEXT-\u0192"
                 }
             }
         },
