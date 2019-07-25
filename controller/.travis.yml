@@ -1,0 +1,114 @@
+# travis-ci integration for the kiibohd controller firmware
+
+sudo:
+  - false
+
+language:
+  - c
+
+os:
+  - linux
+  - osx
+
+compiler:
+  - clang
+  - gcc
+
+addons:
+  apt:
+    sources:
+      - debian-sid
+    packages:
+      - binutils-arm-none-eabi
+      - gcc-arm-none-eabi
+      - exuberant-ctags
+        #- libc6-dev-i386 # Needed for clang!?
+      - libnewlib-arm-none-eabi
+      - tree
+
+# Build Scripts
+env:
+  # Input Club Keyboard Tests
+  - DIR=Keyboards SCRIPT=infinity.bash
+  - DIR=Keyboards SCRIPT=infinity_led.bash
+  - DIR=Keyboards SCRIPT=ergodox.bash
+  - DIR=Keyboards SCRIPT=whitefox.bash
+
+  # Debug Build Tests
+  - DIR=Keyboards/Testing SCRIPT=uartout.bash
+  - DIR=Keyboards/Testing SCRIPT=usbmuxuart.bash
+
+  # Bootloader Build Tests
+  - DIR=Bootloader/Builds SCRIPT=mk20dx128vlf5.bash
+  - DIR=Bootloader/Builds SCRIPT=mk20dx256vlh7.bash
+
+# Exclusions
+matrix:
+  # TODO - Still some travis clang issues
+  allow_failures:
+    - compiler: clang
+
+  exclude:
+    # Bootloader doesn't support clang yet
+    - compiler: clang
+      env: DIR=Bootloader/Builds SCRIPT=mk20dx128vlf5.bash
+    - compiler: clang
+      env: DIR=Bootloader/Builds SCRIPT=mk20dx256vlh7.bash
+    # xcode *and* brew don't support clang ARMCCompiler for arm-none-eabi, sigh useless Apple
+    # Disabling Linux clang builds until Travis has less crappy repos available
+    - compiler: clang
+      env: DIR=Keyboards SCRIPT=infinity.bash
+    - compiler: clang
+      env: DIR=Keyboards SCRIPT=infinity_led.bash
+    - compiler: clang
+      env: DIR=Keyboards SCRIPT=ergodox.bash
+    - compiler: clang
+      env: DIR=Keyboards SCRIPT=whitefox.bash
+    - compiler: clang
+      env: DIR=Keyboards/Testing SCRIPT=uartout.bash
+    - compiler: clang
+      env: DIR=Keyboards/Testing SCRIPT=usbmuxuart.bash
+    - compiler: clang
+      env: DIR=Bootloader/Builds SCRIPT=mk20dx128vlf5.bash
+    - compiler: clang
+      env: DIR=Bootloader/Builds SCRIPT=mk20dx256vlh7.bash
+
+# Package Setup
+before_install:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install python3 ctags dfu-util tree; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]] && [[ "$CC" == "gcc" ]];   then brew tap Caskroom/cask; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]] && [[ "$CC" == "gcc" ]];   then brew install Caskroom/cask/gcc-arm-embedded; fi
+  # This may work, but we'd have to compile llvm...
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]] && [[ "$CC" == "clang" ]]; then brew tap homebrew/versions; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]] && [[ "$CC" == "clang" ]]; then brew install homebrew/versions/llvm38 --with-all-targets --with-asan --with-lld --HEAD; fi
+
+# System setup
+install:
+  # Info about OS
+  - uname -a
+
+  # Pre-clone kll.git to speed-up build
+  - git clone https://github.com/kiibohd/kll.git
+
+  # Directory tree to validate kll.git
+  - tree
+
+  # Compiler Version
+  - ${CC} --version
+
+  # Python Version
+  - python --version
+  - python3 --version
+
+  # CMake Version
+  - cmake --version
+
+# Run test script(s)
+script:
+  - (cd ${DIR} && COMPILER=${CC} ./${SCRIPT})
+
+# Post test script commands
+after_script:
+  - tree
+
